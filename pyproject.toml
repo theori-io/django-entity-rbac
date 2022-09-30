@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "django-entity-rbac"
+version = "0.1.0"
+description = "Description"
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "django_entity_rbac"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[tool.poetry.group.dev.dependencies]
+Django = "^3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
