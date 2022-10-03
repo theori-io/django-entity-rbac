@@ -350,8 +350,12 @@ def compute_access_role_filter_q(flag_exprs, conditional_role_masks,
 
     return result
 
-def compute_anonymous_access_role_filter_q(conditional_role_masks, anonymous_role):
+def compute_anonymous_access_role_filter_q(conditional_role_masks, special_roles):
     result = False
+    try:
+        anonymous_role = special_roles[Anonymous]
+    except KeyError:
+        return result
     for filt_roles, filt_cond in conditional_role_masks:
         if isinstance(filt_roles, BackReference):
             return UnresolvedFilterRoles(filt_roles)
@@ -750,7 +754,7 @@ class AccessAnnotateMixin:
                 ),
                 compute_anonymous_access_role_filter_q(
                     value,
-                    special_roles[Anonymous],
+                    special_roles,
                 ),
             )
             for key, value in filter_roles.items()
